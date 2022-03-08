@@ -1,0 +1,26 @@
+name: python unit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.py'
+  pull_request:
+    paths:
+      - '*.py'
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.10"
+    - name: Install poetry
+      run: pip install poetry
+    - name: Install package dependencies
+      run: poetry install
+    - name: Run tests
+      run: poetry run pytest
