@@ -3,7 +3,7 @@
 set -eou pipefail
 
 echo Generating geojson for Europe
-EUROPE_SHAPEFILE=source-data/Shapefiles/Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035.shp
+EUROPE_SHAPEFILE=$(tomlq -r .shapefiles.europe config.toml)
 
 for country in IS HR SI LV IT FI FR ES IE DE LU NO EL PT SE \
     EE HU CY RO PL DK AT LT BE SK CZ RS AL BG CH UK NL LI MK MT; do

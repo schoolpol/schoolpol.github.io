@@ -1,0 +1,9 @@
+[source]
+location = "source-data/Data/Human_Capital"
+# specify encoding if not utf-8, to detect encoding
+# try running chardetect (from python chardet package)
+encoding = "iso-8859-1"
+
+[shapefiles]
+europe = "source-data/Shapefiles/Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035.shp"
+
