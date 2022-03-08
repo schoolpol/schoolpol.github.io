@@ -1,0 +1,436 @@
+{
+  "original_file": "Greece_2011.csv",
+  "year": 2011,
+  "country": "GR",
+  "var": "ed_isced_6to8_f_25plus",
+  "data": {
+    "Municipality of Pireas": {
+      "%": 15.430132,
+      "v": 10170
+    },
+    "Municipality of Alimos": {
+      "%": 25.859056,
+      "v": 4440
+    },
+    "Municipality of Nea Philadelfia": {
+      "%": 16.441006,
+      "v": 1700
+    },
+    "EL513": {
+      "%": 8.5380688,
+      "v": 3510
+    },
+    "Municipality of Perama": {
+      "%": 6.8252325,
+      "v": 660
+    },
+    "Municipality of Thessaloniki": {
+      "%": 24.384237,
+      "v": 30690
+    },
+    "EL632": {
+      "%": 13.701597,
+      "v": 15180
+    },
+    "Rest of Department Thessaloniki": {
+      "%": 14.927424,
+      "v": 17380
+    },
+    "Municipality of Athens": {
+      "%": 21.955479,
+      "v": 59080
+    },
+    "EL652": {
+      "%": 10.345448,
+      "v": 5750
+    },
+    "Municipality of Neapoli": {
+      "%": 10.822898,
+      "v": 1210
+    },
+    "EL631": {
+      "%": 8.7225809,
+      "v": 6760
+    },
+    "Municipality of Cholargos": {
+      "%": 36.532738,
+      "v": 4910
+    },
+    "EL651": {
+      "%": 9.3677158,
+      "v": 6430
+    },
+    "Municipality of Vyron": {
+      "%": 21.007721,
+      "v": 5170
+    },
+    "Municipality of Pylea": {
+      "%": 33.121017,
+      "v": 4160
+    },
+    "EL411": {
+      "%": 11.332822,
+      "v": 4430
+    },
+    "Municipality of Iraklio": {
+      "%": 24.782831,
+      "v": 4850
+    },
+    "EL533": {
+      "%": 11.122938,
+      "v": 2090
+    },
+    "EL422": {
+      "%": 10.243338,
+      "v": 4420
+    },
+    "Municipality of Kallithea": {
+      "%": 17.146282,
+      "v": 7150
+    },
+    "Municipality of Kalamaria": {
+      "%": 27.149445,
+      "v": 10010
+    },
+    "EL525": {
+      "%": 10.602259,
+      "v": 5070
+    },
+    "EL433": {
+      "%": 12.345679,
+      "v": 3600
+    },
+    "Municipality of Petroupoli": {
+      "%": 15.299335,
+      "v": 3450
+    },
+    "Municipality of Aghii Anargyri": {
+      "%": 13.730159,
+      "v": 1730
+    },
+    "EL622": {
+      "%": 9.1062803,
+      "v": 3770
+    },
+    "EL524": {
+      "%": 7.6648507,
+      "v": 4080
+    },
+    "Municipality of Glyfada": {
+      "%": 25.907921,
+      "v": 9060
+    },
+    "Municipality of Dafni": {
+      "%": 17.149221,
+      "v": 1540
+    },
+    "Municipality of Galatsi": {
+      "%": 18.636755,
+      "v": 4320
+    },
+    "Municipality of Chalandri": {
+      "%": 33.018562,
+      "v": 10140
+    },
+    "Municipality of Sykees": {
+      "%": 15.675298,
+      "v": 2240
+    },
+    "EL511": {
+      "%": 10.632912,
+      "v": 5880
+    },
+    "Municipality of Acharnes": {
+      "%": 8.4028778,
+      "v": 2920
+    },
+    "Municipality of Kamatero": {
+      "%": 9.3269234,
+      "v": 970
+    },
+    "Municipality of Chaidari": {
+      "%": 17.100792,
+      "v": 3020
+    },
+    "Municipality of Ilioupoli": {
+      "%": 20.943762,
+      "v": 6480
+    },
+    "Rest of Prefecture West Attiki": {
+      "%": 8.5342016,
+      "v": 1310
+    },
+    "Municipality of Aghia Varvara": {
+      "%": 9.792285,
+      "v": 990
+    },
+    "EL642": {
+      "%": 9.7346258,
+      "v": 7630
+    },
+    "EL515": {
+      "%": 9.8850145,
+      "v": 5330
+    },
+    "Municipality of Aghios Dimitrios": {
+      "%": 17.053408,
+      "v": 4630
+    },
+    "Municipality of Moschato": {
+      "%": 17.986315,
+      "v": 1840
+    },
+    "EL653": {
+      "%": 9.5738974,
+      "v": 8920
+    },
+    "EL434": {
+      "%": 13.125441,
+      "v": 7450
+    },
+    "EL612": {
+      "%": 13.018434,
+      "v": 13560
+    },
+    "Municipality of Stavroupoli": {
+      "%": 11.396181,
+      "v": 1910
+    },
+    "EL521": {
+      "%": 8.994709,
+      "v": 4760
+    },
+    "EL613": {
+      "%": 12.991252,
+      "v": 9950
+    },
+    "EL432": {
+      "%": 9.9894476,
+      "v": 2840
+    },
+    "Municipality of Nea Ionia": {
+      "%": 15.971439,
+      "v": 4250
+    },
+    "EL611": {
+      "%": 10.11188,
+      "v": 9490
+    },
+    "EL512": {
+      "%": 10.386657,
+      "v": 4110
+    },
+    "Municipality of Nikea": {
+      "%": 9.6406164,
+      "v": 3380
+    },
+    "Municipality of Eleftherio-Kordelio": {
+      "%": 10.601427,
+      "v": 1040
+    },
+    "EL633": {
+      "%": 7.5133553,
+      "v": 4360
+    },
+    "EL523": {
+      "%": 7.7172503,
+      "v": 2380
+    },
+    "Municipality of Thermaikos": {
+      "%": 20.283976,
+      "v": 2000
+    },
+    "EL645": {
+      "%": 9.9146423,
+      "v": 1510
+    },
+    "Municipality of Ano Liossia": {
+      "%": 5.7168784,
+      "v": 630
+    },
+    "Municipality of Abelokipi": {
+      "%": 11.25,
+      "v": 1710
+    },
+    "Municipality of Aegaleo": {
+      "%": 10.972477,
+      "v": 2990
+    },
+    "EL532": {
+      "%": 9.1386557,
+      "v": 1740
+    },
+    "Municipality of Megara": {
+      "%": 8.9340105,
+      "v": 880
+    },
+    "Municipality of Peristeri": {
+      "%": 11.269188,
+      "v": 6020
+    },
+    "EL421": {
+      "%": 10.743434,
+      "v": 7240
+    },
+    "EL643": {
+      "%": 6.455863,
+      "v": 490
+    },
+    "Municipality of Koropi": {
+      "%": 11.412535,
+      "v": 1220
+    },
+    "Municipality of Polichni": {
+      "%": 10.746064,
+      "v": 1570
+    },
+    "Rest of Prefecture East Attiki": {
+      "%": 20.897707,
+      "v": 25700
+    },
+    "Rest of Prefecture Pireas": {
+      "%": 7.5161061,
+      "v": 2100
+    },
+    "EL623": {
+      "%": 12.920962,
+      "v": 1880
+    },
+    "Municipality of Echedoro": {
+      "%": 10.059761,
+      "v": 1010
+    },
+    "Municipality of Keratsini": {
+      "%": 8.899457,
+      "v": 2620
+    },
+    "Municipality of Nea Smyrni": {
+      "%": 29.701687,
+      "v": 9160
+    },
+    "Municipality of Paleo Faliro": {
+      "%": 25.676163,
+      "v": 7120
+    },
+    "Municipality of Zografos": {
+      "%": 26.336283,
+      "v": 7440
+    },
+    "EL543": {
+      "%": 15.62702,
+      "v": 9670
+    },
+    "EL541": {
+      "%": 10.646153,
+      "v": 5190
+    },
+    "EL514": {
+      "%": 8.9354095,
+      "v": 3500
+    },
+    "Municipality of Kessariani": {
+      "%": 20.510397,
+      "v": 2170
+    },
+    "Municipality of Aghia Paraskevi": {
+      "%": 37.624584,
+      "v": 9060
+    },
+    "EL641": {
+      "%": 8.0276318,
+      "v": 3370
+    },
+    "Municipality of Elefsina": {
+      "%": 9.4488192,
+      "v": 840
+    },
+    "Rest of Prefecture Athens": {
+      "%": 32.072414,
+      "v": 23740
+    },
+    "Municipality of Evosmo": {
+      "%": 13.058162,
+      "v": 3480
+    },
+    "Municipality of Amaroussio": {
+      "%": 32.119987,
+      "v": 9530
+    },
+    "EL412": {
+      "%": 10.200364,
+      "v": 1680
+    },
+    "EL621": {
+      "%": 8.275382,
+      "v": 1190
+    },
+    "EL624": {
+      "%": 12.5,
+      "v": 1090
+    },
+    "EL531": {
+      "%": 9.4911795,
+      "v": 6510
+    },
+    "Municipality of Ilio (Nea Liossia)": {
+      "%": 10.994598,
+      "v": 3460
+    },
+    "Municipality of Vrilissia": {
+      "%": 39.915966,
+      "v": 4750
+    },
+    "EL644": {
+      "%": 9.7298193,
+      "v": 5870
+    },
+    "EL413": {
+      "%": 11.659878,
+      "v": 2290
+    },
+    "Municipality of Voula": {
+      "%": 35.70808,
+      "v": 4110
+    },
+    "Municipality of Aspropyrgos": {
+      "%": 6.1203318,
+      "v": 590
+    },
+    "EL542": {
+      "%": 8.9569826,
+      "v": 1520
+    },
+    "Municipality of Salamina": {
+      "%": 7.4104233,
+      "v": 910
+    },
+    "Municipality of Korydallos": {
+      "%": 10.882957,
+      "v": 2650
+    },
+    "EL431": {
+      "%": 12.816799,
+      "v": 14160
+    },
+    "Municipality of Argyroupoli": {
+      "%": 18.335789,
+      "v": 2490
+    },
+    "EL527": {
+      "%": 9.054122,
+      "v": 3580
+    },
+    "Municipality of Kifissia": {
+      "%": 38.597404,
+      "v": 7430
+    },
+    "EL526": {
+      "%": 8.7624464,
+      "v": 6160
+    },
+    "Municipality of Metamorfossi": {
+      "%": 15.265082,
+      "v": 1670
+    }
+  }
+}
