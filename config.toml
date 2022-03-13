@@ -5,5 +5,5 @@ location = "source-data/Data/Human_Capital"
 encoding = "iso-8859-1"
 
 [shapefiles]
-europe = "source-data/Shapefiles/Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035.shp"
+europe = "source-data/Shapefiles/Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035"
 
