@@ -140,7 +140,7 @@ class Map extends React.Component {
       hoverMessage = (
         <span>
           <strong>{this.state.launame}</strong> {this.state.value} (
-          {this.state.percentage})
+          {Math.round(this.state.percentage)}%)
         </span>
       );
     return (
