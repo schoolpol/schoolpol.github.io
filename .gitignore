@@ -2,3 +2,4 @@ source-data/**
 !source-data/Data/Human_Capital/**
 tags
 node_modules
+*.swp
