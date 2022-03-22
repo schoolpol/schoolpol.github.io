@@ -6,12 +6,13 @@ import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
 import colorbrewer from "colorbrewer";
 
 // replace with fetch() calls according to current state
-import countries from '../countries.json';
-import geojson from "../data/UK/UK.json";
-import education from "../data/UK/2011/ed_isced_6to8.json";
+import countries from "../countries.json";
+import index from "../dataindex.json";
 const position = [54.505, -0.09];
 
 const defaultColor = "#eeeeee"; // gray
+
+const url = "https://data.trenozoic.net/schoolpol";
 
 const scales = {
   ed_isced_6to8: {
@@ -54,45 +55,39 @@ function legendValues(variable) {
   return values;
 }
 
-class Legend extends React.Component {
-  render() {
-    console.log(legendValues("ed_isced_6to8"));
-    return (
-      <div id="legend">
-        <ul>
-          {legendValues("ed_isced_6to8").map((l) => (
-            <li style={{ "--color": l.color }}>{l.text}</li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
 class Map extends React.Component {
   constructor(props) {
     super(props);
+    let initCountry = "AT";
     this.state = {
-      country: "UK",
-      variable: "ed_isced_6to8",
-      year: 1987,
+      country: initCountry,
+      variable: index[initCountry].initialState.variable,
+      year: index[initCountry].initialState.year,
       geoJSON: null,
+      variableData: null,
       lau: null,
       launame: null,
       value: null,
+      gender: "",
       percentage: null,
     };
   }
 
-  // componentDidMount () {
-  //   fetch(`${url}/${this.state.country}/${this.state.country}.geojson`)
-  //   .then(res => res.json())
-  //   .then(json => this.setState({ geoJSON: json }));
-  // }
+  componentDidMount() {
+    fetch(`${url}/${this.state.country}/${this.state.country}.geojson`)
+      .then((res) => res.json())
+      .then((json) => this.setState({ geoJSON: json }));
+    fetch(
+      `${url}/${this.state.country}/${this.state.year}/${this.state.variable}${this.state.gender}.json`
+    )
+      .then((res) => res.json())
+      .then((json) => this.setState({ variableData: json.data }));
+  }
 
   hover(e) {
     let layer = e.target;
     const { LAU_ID, LAU_NAME } = layer.feature.properties;
-    let data = education.data[LAU_ID];
+    let data = this.state.variableData[LAU_ID];
     this.setState({
       lau: LAU_ID,
       launame: LAU_NAME,
@@ -102,7 +97,8 @@ class Map extends React.Component {
   }
 
   style(feature) {
-    let percentage = education.data?.[feature.properties.LAU_ID]?.["%"];
+    let percentage =
+      this.state.variableData?.[feature.properties.LAU_ID]?.["%"];
     let base = {
       fillColor: getColor(this.state.variable, percentage),
       weight: 0,
@@ -135,6 +131,29 @@ class Map extends React.Component {
     });
   }
 
+  changeCountry(e) {
+    let country = e.target.value;
+    let variable = index[country].initialState.variable;
+    let year = index[country].initialState.year;
+    fetch(`${url}/${country}/${country}.geojson`)
+      .then((res) => res.json())
+      .then((geoJSON) => this.setState({ country, variable, year, geoJSON }));
+    fetch(`${url}/${country}/${year}/${variable}${this.state.gender}.json`)
+      .then((res) => res.json())
+      .then((json) => this.setState({ variableData: json.data }));
+  }
+
+  changeVariable(e) {
+    let variable = e.target.value;
+    fetch(
+      `${url}/${this.state.country}/${this.state.year}/${variable}${this.state.gender}.json`
+    )
+      .then((res) => res.json())
+      .then((json) =>
+        this.setState({ variableData: json.data, variable: variable })
+      );
+  }
+
   render() {
     let hoverMessage = <strong>Hover on a local area to see details</strong>;
     if (this.state.lau !== null)
@@ -146,46 +165,66 @@ class Map extends React.Component {
       );
     return (
       <div id="content">
-      <div id="chooser">
-        <p>Select a country to get started ⟶</p>
-        <select name="country" id="country">
-        { countries.map((country) => <option value={country.code}>{country.name}</option>) }
-        </select>
-        <select name="variables" id="variables">
-          <option value="ed_isced_6to8">ISCED 6 - 8</option>
-        </select>
-        <select name="gender" id="gender">
-          <option value="">All genders</option>
-          <option value="_f">Female</option>
-          <option value="_m">Male</option>
-        </select>
-        <input
-          type="range"
-          min="1"
-          max="100"
-          defaultValue="50"
-          className="slider"
-          id="year"
-        />
-      </div>
-
-      <div id="map">
-        <div id="lauInfo">{hoverMessage}</div>
-        <Legend />
-        <MapContainer center={position} zoom={6}>
-          {geojson && (
-            <GeoJSON
-              data={geojson}
-              style={this.style.bind(this)}
-              onEachFeature={this.onEachFeature.bind(this)}
-            />
-          )}
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        <div id="chooser">
+          <p>Select a country to get started ⟶</p>
+          <select
+            name="country"
+            id="country"
+            onChange={this.changeCountry.bind(this)}
+          >
+            {countries.map((country) => (
+              <option value={country.code}>{country.name}</option>
+            ))}
+          </select>
+          <select
+            name="variables"
+            id="variables"
+            onChange={this.changeVariable.bind(this)}
+          >
+            <option value="ed_isced_0to2">0 - 2</option>
+            <option value="ed_isced_3to5">3 - 5</option>
+            <option value="ed_isced_6to8">6 - 8</option>
+          </select>
+          <select name="gender" id="gender">
+            <option value="">All genders</option>
+            <option value="_f">Female</option>
+            <option value="_m">Male</option>
+          </select>
+          <input
+            type="range"
+            min="1"
+            max="100"
+            defaultValue="50"
+            className="slider"
+            id="year"
           />
-        </MapContainer>
-      </div>
+        </div>
+
+        <div id="map">
+          <div id="lauInfo">{hoverMessage}</div>
+          <div id="legend">
+            <ul>
+              {legendValues(this.state.variable).map((l) => (
+                <li style={{ "--color": l.color }}>{l.text}</li>
+              ))}
+            </ul>
+          </div>
+
+          <MapContainer center={position} zoom={6}>
+            {this.state.geoJSON && (
+              <GeoJSON
+                key={this.state.country}
+                data={this.state.geoJSON}
+                style={this.style.bind(this)}
+                onEachFeature={this.onEachFeature.bind(this)}
+              />
+            )}
+            <TileLayer
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+          </MapContainer>
+        </div>
       </div>
     );
   }
