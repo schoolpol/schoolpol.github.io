@@ -4,6 +4,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     gdal
     nodePackages.npm
+    nodePackages.prettier
     nodejs
     python3
     python39Packages.pandas
