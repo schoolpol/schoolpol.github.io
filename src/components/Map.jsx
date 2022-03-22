@@ -154,6 +154,17 @@ class Map extends React.Component {
       );
   }
 
+  changeGender(e) {
+    let gender = e.target.value;
+    fetch(
+      `${url}/${this.state.country}/${this.state.year}/${this.state.variable}${gender}.json`
+    )
+      .then((res) => res.json())
+      .then((json) =>
+        this.setState({ variableData: json.data, gender: gender })
+      );
+  }
+
   render() {
     let hoverMessage = <strong>Hover on a local area to see details</strong>;
     if (this.state.lau !== null)
@@ -185,7 +196,11 @@ class Map extends React.Component {
             <option value="ed_isced_3to5">3 - 5</option>
             <option value="ed_isced_6to8">6 - 8</option>
           </select>
-          <select name="gender" id="gender">
+          <select
+            name="gender"
+            id="gender"
+            onChange={this.changeGender.bind(this)}
+          >
             <option value="">All genders</option>
             <option value="_f">Female</option>
             <option value="_m">Male</option>
