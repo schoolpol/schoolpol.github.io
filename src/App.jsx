@@ -1,6 +1,5 @@
 import React from "react";
 import Map from "./components/Map";
-import Chooser from "./components/Chooser";
 
 export default function App() {
   return (
@@ -13,7 +12,6 @@ export default function App() {
           <a href="https://schoolpol.web.ox.ac.uk/home">Read more...</a>
         </p>
       </div>
-      <Chooser />
       <Map />
     </div>
   );
