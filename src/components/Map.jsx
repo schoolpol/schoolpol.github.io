@@ -6,7 +6,7 @@ import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
 import colorbrewer from "colorbrewer";
 
 // replace with fetch() calls according to current state
-import countries from '../../countries.json';
+import countries from '../countries.json';
 import geojson from "../data/UK/UK.json";
 import education from "../data/UK/2011/ed_isced_6to8.json";
 const position = [54.505, -0.09];
@@ -149,12 +149,7 @@ class Map extends React.Component {
       <div id="chooser">
         <p>Select a country to get started ⟶</p>
         <select name="country" id="country">
-          {
-            dataCollection.map((item) =>
-            <li key={item.id}>{item.title}</li>
-          )
-        }
-          <option value="UK">United Kingdom</option>
+        { countries.map((country) => <option value={country.code}>{country.name}</option>) }
         </select>
         <select name="variables" id="variables">
           <option value="ed_isced_6to8">ISCED 6 - 8</option>
