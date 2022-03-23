@@ -91,7 +91,9 @@ class Map extends React.Component {
 
   changeCountry(e) {
     let country = e.target.value;
-    let variable = index[country].initialState.variable;
+    let variable = index[country].variables.includes(this.state.variable)
+      ? this.state.variable
+      : index[country].initialState.variable;
     let year = index[country].initialState.year;
     fetch(`${url}/${country}/${country}.geojson`)
       .then((res) => res.json())
@@ -149,6 +151,7 @@ class Map extends React.Component {
           <select
             name="variables"
             id="variables"
+            value={this.state.variable}
             onChange={this.changeVariable.bind(this)}
           >
             <option value="ed_isced_0to2">0 - 2</option>
@@ -184,7 +187,11 @@ class Map extends React.Component {
             </ul>
           </div>
 
-          <MapContainer center={this.state.position} zoom={6} whenCreated={map => this.setState({ map })}>
+          <MapContainer
+            center={this.state.position}
+            zoom={6}
+            whenCreated={(map) => this.setState({ map })}
+          >
             {this.state.geoJSON && (
               <GeoJSON
                 key={this.state.country}
