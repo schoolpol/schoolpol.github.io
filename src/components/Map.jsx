@@ -6,9 +6,8 @@ import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
 
 import { getColor, legendValues } from "../palette";
 import countries from "../countries.json";
+import centroids from "../centroids.json";
 import index from "../dataindex.json";
-
-const position = [54.505, -0.09];
 
 const url = "https://data.trenozoic.net/schoolpol";
 
@@ -20,8 +19,10 @@ class Map extends React.Component {
       country: initCountry,
       variable: index[initCountry].initialState.variable,
       year: index[initCountry].initialState.year,
+      position: centroids[initCountry],
       geoJSON: null,
       variableData: null,
+      map: null,
       lau: null,
       launame: null,
       value: null,
@@ -98,6 +99,7 @@ class Map extends React.Component {
     fetch(`${url}/${country}/${year}/${variable}${this.state.gender}.json`)
       .then((res) => res.json())
       .then((json) => this.setState({ variableData: json.data }));
+    this.state.map.flyTo(centroids[country]);
   }
 
   changeVariable(e) {
@@ -182,7 +184,7 @@ class Map extends React.Component {
             </ul>
           </div>
 
-          <MapContainer center={position} zoom={6}>
+          <MapContainer center={this.state.position} zoom={6} whenCreated={map => this.setState({ map })}>
             {this.state.geoJSON && (
               <GeoJSON
                 key={this.state.country}
