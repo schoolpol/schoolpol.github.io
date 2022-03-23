@@ -101,7 +101,7 @@ class Map extends React.Component {
     fetch(`${url}/${country}/${year}/${variable}${this.state.gender}.json`)
       .then((res) => res.json())
       .then((json) => this.setState({ variableData: json.data }));
-    this.state.map.flyTo(centroids[country]);
+    this.state.map.flyTo(centroids[country], countries[country].zoom ?? 6);
   }
 
   changeVariable(e) {
@@ -144,8 +144,8 @@ class Map extends React.Component {
             id="country"
             onChange={this.changeCountry.bind(this)}
           >
-            {countries.map((country) => (
-              <option value={country.code}>{country.name}</option>
+            {Object.keys(countries).map((country) => (
+              <option value={country}>{countries[country].name}</option>
             ))}
           </select>
           <select
@@ -189,7 +189,7 @@ class Map extends React.Component {
 
           <MapContainer
             center={this.state.position}
-            zoom={6}
+            zoom={7}
             whenCreated={(map) => this.setState({ map })}
           >
             {this.state.geoJSON && (
