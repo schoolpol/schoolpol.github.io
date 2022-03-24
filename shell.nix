@@ -10,5 +10,6 @@ pkgs.mkShell {
     python39Packages.pandas
     python39Packages.toml
     python39Packages.pycountry
+    python39Packages.pytest
   ];
 }
