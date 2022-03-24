@@ -1,9 +1,40 @@
+shapefileRoot = "../source-data/Shapefiles/"
+EU = "Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035"
+paletteDefaultColor = "#eeeeee"
+
 [source]
 location = "source-data/Data/Human_Capital"
-# specify encoding if not utf-8, to detect encoding
-# try running chardetect (from python chardet package)
-encoding = "iso-8859-1"
+encoding = "iso-8859-1"  # default encoding = utf-8 (try chardetect)
 
-[shapefiles]
-europe = "source-data/Shapefiles/Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035"
+[countries]
+AT = { name = "Austria", zoom = 7, EU = true }
+BE = { name = "Belgium", zoom = 8, EU = true }
+CH = { name = "Switzerland", zoom = 7, EU = true }
+DE = { name = "Germany", doNotGenerateShapefile = true }
+DK = { name = "Denmark", EU = true }
+ES = { name = "Spain", EU = true }
+FI = { name = "Finland", EU = true }
+FR = { name = "France", doNotGenerateShapefile = true }
+GR = { name = "Greece", EU = true }
+IT = { name = "Italy", EU = true }
+NO = { name = "Norway", EU = true }
+PL = { name = "Poland", EU = true }
+PT = { name = "Portugal", EU = true }
+SE = { name = "Sweden", EU = true }
+UK = { name = "United Kingdom", EU = true }
 
+[countries.CA]
+name = "Canada"
+shapefile = "Canada/lccs000b16a_e/lccs000b16a_e"
+
+[countries.IE]
+name = "Ireland"
+shapefile = "Ireland/Ireland"
+
+[countries.NZ]
+name = "New Zealand"
+shapefile = "NZ/NZ"
+
+[countries.US]
+name = "United States"
+shapefile = "USA/cb_2018_us_county_500k"
