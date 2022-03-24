@@ -13,29 +13,42 @@ h1 {
   margin-left: 10px;
 }
 
+div#blurb {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  background: #002147;
+  color: white;
+  opacity: 0.8;
+  padding-left: 50px;
+}
 div#blurb p {
   font-size: large;
-  margin-left: 10px;
 }
 
 div#chooser {
-  background: white;
+  background: goldenrod;
   width: 100%;
   opacity: 0.8;
   margin-left: 0px;
   position: absolute;
-  margin-top: 0px;
+  margin-top: 50px;
+  padding: -10px;
   padding-left: 60px;
   z-index: 999;
 }
 
 div#chooser p {
+  padding: 0;
+  padding-bottom: 10px;
+  margin-top: 7px;
+  margin-bottom: 0px;
   float: left;
   margin-right: 10px;
 }
 div#chooser select,
 div#chooser input {
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 input[type="range"] {
@@ -48,7 +61,7 @@ div#lauInfo {
   min-width: 400px;
   position: absolute;
   z-index: 999;
-  margin-top: 60px;
+  margin-top: 100px;
   margin-left: 50px;
 }
 
