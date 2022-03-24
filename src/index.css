@@ -9,18 +9,24 @@ body {
 }
 
 h1 {
+  font-size: large;
   margin-left: 10px;
 }
+
 div#blurb p {
-  font-size: x-large;
-  margin-top: -10px;
+  font-size: large;
   margin-left: 10px;
 }
 
 div#chooser {
-  font-size: large;
-  margin-top: -30px;
-  margin-left: 10px;
+  background: white;
+  width: 100%;
+  opacity: 0.8;
+  margin-left: 0px;
+  position: absolute;
+  margin-top: 0px;
+  padding-left: 60px;
+  z-index: 999;
 }
 
 div#chooser p {
@@ -39,11 +45,10 @@ input[type="range"] {
 div#lauInfo {
   background: white;
   padding: 10px;
-  font-size: large;
   min-width: 400px;
   position: absolute;
   z-index: 999;
-  margin-top: 30px;
+  margin-top: 60px;
   margin-left: 50px;
 }
 
@@ -77,4 +82,22 @@ div#lauInfo {
   width: 20px;
   height: 20px;
   margin-right: 5px;
+}
+
+div#aboutmodal {
+  background: white;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+}
+
+button.button {
+  background: #eeeeee;
+  border: 1px solid grey;
+  padding: 4px;
+  margin-right: 5px;
+}
+
+button.button:hover {
+  background: #dddddd;
 }
