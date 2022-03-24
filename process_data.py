@@ -8,7 +8,7 @@ import pycountry
 import collections
 import pandas as pd
 
-with open("config.toml") as fp:
+with open("src/config.toml") as fp:
     CONFIG = toml.load(fp)
 
 
