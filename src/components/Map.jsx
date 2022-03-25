@@ -12,6 +12,9 @@ import index from "../dataindex.json";
 const url = "https://data.trenozoic.net/schoolpol";
 
 class Map extends React.Component {
+
+  _mounted = false;
+
   constructor(props) {
     super(props);
     let initCountry = "AT";
@@ -32,14 +35,21 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${url}/${this.state.country}/${this.state.country}.geojson`)
-      .then((res) => res.json())
-      .then((json) => this.setState({ geoJSON: json }));
-    fetch(
-      `${url}/${this.state.country}/${this.state.year}/${this.state.variable}${this.state.gender}.json`
-    )
-      .then((res) => res.json())
-      .then((json) => this.setState({ variableData: json.data }));
+    this._mounted = true;
+    if (this._mounted) {
+      fetch(`${url}/${this.state.country}/${this.state.country}.geojson`)
+        .then((res) => res.json())
+        .then((json) => this.setState({ geoJSON: json }));
+      fetch(
+        `${url}/${this.state.country}/${this.state.year}/${this.state.variable}${this.state.gender}.json`
+      )
+        .then((res) => res.json())
+        .then((json) => this.setState({ variableData: json.data }));
+    }
+  }
+
+  componentWillUnmount() {
+    this._mounted = false;
   }
 
   hover(e) {
