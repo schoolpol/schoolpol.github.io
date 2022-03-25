@@ -2,14 +2,13 @@ import math
 from typing import Any
 from pathlib import Path
 
-import toml
 import json
 import pycountry
 import collections
 import pandas as pd
 
-with open("src/config.toml") as fp:
-    CONFIG = toml.load(fp)
+with open("src/config.json") as fp:
+    CONFIG = json.load(fp)
 
 
 def lookup_country_code(country: str) -> str:
