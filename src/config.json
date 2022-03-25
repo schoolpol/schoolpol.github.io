@@ -28,6 +28,7 @@
     },
     "DK": {
       "name": "Denmark",
+      "zoom": 7,
       "EU": true
     },
     "ES": {
@@ -36,6 +37,7 @@
     },
     "FI": {
       "name": "Finland",
+      "zoom": 5,
       "EU": true
     },
     "FR": {
@@ -52,6 +54,7 @@
     },
     "NO": {
       "name": "Norway",
+      "zoom": 5,
       "EU": true
     },
     "PL": {
@@ -64,6 +67,7 @@
     },
     "SE": {
       "name": "Sweden",
+      "zoom": 5,
       "EU": true
     },
     "UK": {
@@ -72,10 +76,12 @@
     },
     "CA": {
       "name": "Canada",
+      "zoom": 5,
       "shapefile": "Canada/lccs000b16a_e/lccs000b16a_e"
     },
     "IE": {
       "name": "Ireland",
+      "zoom": 7,
       "shapefile": "Ireland/Ireland"
     },
     "NZ": {
@@ -84,6 +90,7 @@
     },
     "US": {
       "name": "United States",
+      "zoom": 5,
       "shapefile": "USA/cb_2018_us_county_500k"
     }
   }
