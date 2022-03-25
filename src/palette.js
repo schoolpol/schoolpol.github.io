@@ -1,5 +1,7 @@
 import colorbrewer from "colorbrewer";
-const defaultColor = "#eeeeee"; // gray
+
+import config from "./config.json";
+const defaultColor = config.paletteDefaultColor;
 
 const scales = {
   ed_isced_6to8: {
