@@ -5,11 +5,12 @@ import React from "react";
 import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
 
 import { getColor, legendValues } from "../palette";
-import countries from "../countries.json";
+import config from "../config.json";
 import centroids from "../centroids.json";
 import index from "../dataindex.json";
 
 const url = "https://data.trenozoic.net/schoolpol";
+const countries = config.countries;
 
 class Map extends React.Component {
 
