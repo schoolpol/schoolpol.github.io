@@ -98,11 +98,16 @@ div#lauInfo {
 }
 
 div#aboutmodal {
-  background: white;
+  background: #002147;
+  opacity: 0.85;
+  color: white;
   padding: 20px;
   width: 80%;
   max-width: 600px;
+  border-radius: 10px;
 }
+
+div#aboutmodal a { color: yellow }
 
 button.button {
   background: #eeeeee;
