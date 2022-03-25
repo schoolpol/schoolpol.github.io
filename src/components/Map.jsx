@@ -192,7 +192,7 @@ class Map extends React.Component {
           <div id="legend">
             <ul>
               {legendValues(this.state.variable).map((l) => (
-                <li style={{ "--color": l.color }}>{l.text}</li>
+                <li key={`${this.state.variable}${l.text}`} style={{ "--color": l.color }}>{l.text}</li>
               ))}
             </ul>
           </div>
