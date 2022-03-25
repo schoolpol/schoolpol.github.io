@@ -1,13 +1,13 @@
 # Depends: gdal (for ogr2ogr)
 import subprocess
+import json
 from pathlib import Path
 
-import toml
 
 OGR = "ogr2ogr"
 
-with open("src/config.toml") as fp:
-    CONFIG = toml.load(fp)
+with open("src/config.json") as fp:
+    CONFIG = json.load(fp)
     COUNTRIES = CONFIG["countries"]
     SHAPEFILES = Path(CONFIG["shapefileRoot"])
 
