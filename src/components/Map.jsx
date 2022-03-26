@@ -178,15 +178,7 @@ class Map extends React.Component {
             <option value="_f">Female</option>
             <option value="_m">Male</option>
           </select>
-          <input
-            type="range"
-            min="1"
-            max="100"
-            defaultValue="50"
-            className="slider"
-            id="year"
-          />
-        </div>
+       </div>
 
         <div id="map">
           <div id="lauInfo">{hoverMessage}</div>
