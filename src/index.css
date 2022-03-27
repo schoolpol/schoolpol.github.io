@@ -22,8 +22,12 @@ div#blurb {
   opacity: 0.8;
   padding-left: 50px;
 }
+
 div#blurb p {
-  font-size: large;
+  margin-left: 10px;
+  margin-top: -7px;
+  font-size: 11pt;
+  width: 90%;
 }
 
 div#chooser {
@@ -34,7 +38,7 @@ div#chooser {
   opacity: 0.8;
   margin-left: 0px;
   position: absolute;
-  margin-top: 50px;
+  margin-top: 90px;
   padding: -10px;
   padding-left: 60px;
   z-index: 999;
@@ -65,7 +69,7 @@ div#lauInfo {
   min-width: 400px;
   position: absolute;
   z-index: 999;
-  margin-top: 90px;
+  margin-top: 130px;
   margin-left: 50px;
   border-radius: 7px;
   opacity: 0.8;
