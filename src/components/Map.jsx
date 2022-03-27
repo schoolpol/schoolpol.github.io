@@ -163,11 +163,11 @@ class Map extends React.Component {
     return (
       <div id="content">
         <div id="chooser">
-          <label htmlFor="country">country</label>
           <select
             name="country"
             id="country"
             onChange={this.changeCountry.bind(this)}
+            style={{"margin-left": "-3px"}}
           >
             {Object.keys(countries).map((country) => (
               <option value={country}>{countries[country].name}</option>
