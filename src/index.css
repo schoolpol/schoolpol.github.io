@@ -27,7 +27,9 @@ div#blurb p {
 }
 
 div#chooser {
-  background: goldenrod;
+  /* background: goldenrod; */
+  padding-top: 5px;
+  color: white;
   width: 100%;
   opacity: 0.8;
   margin-left: 0px;
@@ -46,9 +48,10 @@ div#chooser p {
   float: left;
   margin-right: 10px;
 }
-div#chooser select,
-div#chooser input {
-  margin-top: 5px;
+
+select {
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 input[type="range"] {
@@ -62,7 +65,7 @@ div#lauInfo {
   min-width: 400px;
   position: absolute;
   z-index: 999;
-  margin-top: 100px;
+  margin-top: 90px;
   margin-left: 50px;
   border-radius: 7px;
   opacity: 0.8;
@@ -100,6 +103,10 @@ div#lauInfo {
   width: 20px;
   height: 20px;
   margin-right: 5px;
+}
+
+label {
+  font-weight: bold;
 }
 
 div#aboutmodal {

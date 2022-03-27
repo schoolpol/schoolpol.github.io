@@ -149,7 +149,7 @@ class Map extends React.Component {
     return (
       <div id="content">
         <div id="chooser">
-          <p>Select a country to get started ⟶</p>
+          <label for="country">country</label>
           <select
             name="country"
             id="country"
@@ -159,6 +159,7 @@ class Map extends React.Component {
               <option value={country}>{countries[country].name}</option>
             ))}
           </select>
+          <label for="variables">ISCED</label>
           <select
             name="variables"
             id="variables"
