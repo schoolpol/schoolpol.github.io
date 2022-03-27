@@ -31,6 +31,7 @@ class Map extends React.Component {
       launame: null,
       value: null,
       gender: "",
+      years: index[initCountry].years,
       percentage: null,
     };
   }
@@ -106,9 +107,10 @@ class Map extends React.Component {
       ? this.state.variable
       : index[country].initialState.variable;
     let year = index[country].initialState.year;
+    let years = index[country].years;
     fetch(`${url}/${country}/${country}.geojson`)
       .then((res) => res.json())
-      .then((geoJSON) => this.setState({ country, variable, year, geoJSON }));
+      .then((geoJSON) => this.setState({ country, variable, year, years, geoJSON }));
     fetch(`${url}/${country}/${year}/${variable}${this.state.gender}.json`)
       .then((res) => res.json())
       .then((json) => this.setState({ variableData: json.data }));
@@ -137,6 +139,18 @@ class Map extends React.Component {
       );
   }
 
+  changeYear(e) {
+    let year = e.target.value;
+    fetch(
+      `${url}/${this.state.country}/${year}/${this.state.variable}${this.state.gender}.json`
+    )
+      .then((res) => res.json())
+      .then((json) =>
+        this.setState({ variableData: json.data, year: year })
+      );
+  }
+
+
   render() {
     let hoverMessage = <strong>Hover on a local area to see details</strong>;
     if (this.state.lau !== null)
@@ -149,7 +163,7 @@ class Map extends React.Component {
     return (
       <div id="content">
         <div id="chooser">
-          <label for="country">country</label>
+          <label htmlFor="country">country</label>
           <select
             name="country"
             id="country"
@@ -159,7 +173,7 @@ class Map extends React.Component {
               <option value={country}>{countries[country].name}</option>
             ))}
           </select>
-          <label for="variables">ISCED</label>
+          <label htmlFor="variables">ISCED</label>
           <select
             name="variables"
             id="variables"
@@ -178,6 +192,16 @@ class Map extends React.Component {
             <option value="">All genders</option>
             <option value="_f">Female</option>
             <option value="_m">Male</option>
+          </select>
+          <select
+            name="year"
+            id="year"
+            value={this.state.year}
+            onChange={this.changeYear.bind(this)}
+          >
+            {this.state.years.map((y) => (
+            <option value={y}>{y}</option>
+            ))}
           </select>
        </div>
 
