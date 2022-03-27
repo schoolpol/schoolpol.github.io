@@ -13,7 +13,6 @@ const url = "https://data.trenozoic.net/schoolpol";
 const countries = config.countries;
 
 class Map extends React.Component {
-
   _mounted = false;
 
   constructor(props) {
@@ -110,7 +109,9 @@ class Map extends React.Component {
     let years = index[country].years;
     fetch(`${url}/${country}/${country}.geojson`)
       .then((res) => res.json())
-      .then((geoJSON) => this.setState({ country, variable, year, years, geoJSON }));
+      .then((geoJSON) =>
+        this.setState({ country, variable, year, years, geoJSON })
+      );
     fetch(`${url}/${country}/${year}/${variable}${this.state.gender}.json`)
       .then((res) => res.json())
       .then((json) => this.setState({ variableData: json.data }));
@@ -119,37 +120,54 @@ class Map extends React.Component {
 
   changeVariable(e) {
     let variable = e.target.value;
+    const lau = this.state.lau;
     fetch(
       `${url}/${this.state.country}/${this.state.year}/${variable}${this.state.gender}.json`
     )
       .then((res) => res.json())
       .then((json) =>
-        this.setState({ variableData: json.data, variable: variable })
+        this.setState({
+          variableData: json.data,
+          variable: variable,
+          value: json.data[lau]?.v,
+          percentage: json.data[lau]?.["%"],
+        })
       );
   }
 
   changeGender(e) {
     let gender = e.target.value;
+    const lau = this.state.lau;
     fetch(
       `${url}/${this.state.country}/${this.state.year}/${this.state.variable}${gender}.json`
     )
       .then((res) => res.json())
       .then((json) =>
-        this.setState({ variableData: json.data, gender: gender })
+        this.setState({
+          variableData: json.data,
+          gender: gender,
+          value: json.data[lau]?.v,
+          percentage: json.data[lau]?.["%"],
+        })
       );
   }
 
   changeYear(e) {
     let year = e.target.value;
+    const lau = this.state.lau;
     fetch(
       `${url}/${this.state.country}/${year}/${this.state.variable}${this.state.gender}.json`
     )
       .then((res) => res.json())
       .then((json) =>
-        this.setState({ variableData: json.data, year: year })
+        this.setState({
+          variableData: json.data,
+          year: year,
+          value: json.data[lau]?.v,
+          percentage: json.data[lau]?.["%"],
+        })
       );
   }
-
 
   render() {
     let hoverMessage = <strong>Hover on a local area to see details</strong>;
@@ -167,7 +185,7 @@ class Map extends React.Component {
             name="country"
             id="country"
             onChange={this.changeCountry.bind(this)}
-            style={{"margin-left": "-3px"}}
+            style={{ marginLeft: "-3px" }}
           >
             {Object.keys(countries).map((country) => (
               <option value={country}>{countries[country].name}</option>
@@ -200,17 +218,22 @@ class Map extends React.Component {
             onChange={this.changeYear.bind(this)}
           >
             {this.state.years.map((y) => (
-            <option value={y}>{y}</option>
+              <option value={y}>{y}</option>
             ))}
           </select>
-       </div>
+        </div>
 
         <div id="map">
           <div id="lauInfo">{hoverMessage}</div>
           <div id="legend">
             <ul>
               {legendValues(this.state.variable).map((l) => (
-                <li key={`${this.state.variable}${l.text}`} style={{ "--color": l.color }}>{l.text}</li>
+                <li
+                  key={`${this.state.variable}${l.text}`}
+                  style={{ "--color": l.color }}
+                >
+                  {l.text}
+                </li>
               ))}
             </ul>
           </div>
