@@ -56,12 +56,12 @@ class Map extends React.Component {
   hover(e) {
     let layer = e.target;
     const { LAU_ID, LAU_NAME } = layer.feature.properties;
-    let data = this.state.variableData[LAU_ID];
+    let data = this.state.variableData?.[LAU_ID];
     this.setState({
       lau: LAU_ID,
       launame: LAU_NAME,
-      value: data.v,
-      percentage: data["%"],
+      value: data?.v,
+      percentage: data?.["%"],
     });
   }
 
@@ -172,10 +172,14 @@ class Map extends React.Component {
   render() {
     let hoverMessage = <strong>Hover on a local area to see details</strong>;
     if (this.state.lau !== null)
-      hoverMessage = (
+      hoverMessage = this.state.value ? (
         <span>
           <strong>{this.state.launame}</strong> {this.state.value} (
           {Math.round(this.state.percentage)}%)
+        </span>
+      ) : (
+        <span>
+          <strong>{this.state.launame}</strong> (no data)
         </span>
       );
     return (
