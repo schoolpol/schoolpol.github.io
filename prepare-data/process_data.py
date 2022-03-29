@@ -1,11 +1,12 @@
 import math
+import json
+import collections
 from typing import Any
 from pathlib import Path
 
-import json
 import pycountry
-import collections
 import pandas as pd
+
 
 with open("src/config.json") as fp:
     CONFIG = json.load(fp)
@@ -43,10 +44,12 @@ def get_variables_data(file: Path) -> dict[str, Any]:
     ]
     for _, row in df.iterrows():
         for var in ed_columns:
-            data[var][row["lau"]] = {
-                "%": row[var + "_pc"],
-                "v": row[var],
-            }
+            percentage, value = row[var + "_pc"], row[var]
+            if not math.isnan(percentage):
+                data[var][row["lau"]] = {
+                    "%": percentage,
+                    "v": value,
+                }
     return {"metadata": metadata, "data": data}
 
 
@@ -64,7 +67,7 @@ def is_empty(data: dict[str, Any]) -> bool:
 def write_variables_data(file: Path):
     data = get_variables_data(file)
     folder = (
-        Path(CONFIG["source"].get("output", "data"))
+        Path(CONFIG["source"].get("output", "src/data"))
         / data["metadata"]["country"]
         / str(data["metadata"]["year"])
     )
