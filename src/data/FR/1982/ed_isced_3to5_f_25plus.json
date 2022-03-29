@@ -4,10 +4,6 @@
   "country": "FR",
   "var": "ed_isced_3to5_f_25plus",
   "data": {
-    "61136": {
-      "%": NaN,
-      "v": NaN
-    },
     "64001": {
       "%": 37.5,
       "v": 21.0
