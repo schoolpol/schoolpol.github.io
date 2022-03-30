@@ -18,7 +18,7 @@ const About = () => (
       which you can select in the dropdown. The data can also be visualised by gender
       and across time.
     </p>
-      <span style={{color: "#999999", "font-size": "small"}}>Tap [esc] or click outside to close</span>
+      <span style={{color: "#999999", fontSize: "small"}}>Tap [esc] or click outside to close</span>
     </div>
   </Popup>
 );
