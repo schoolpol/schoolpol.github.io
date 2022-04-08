@@ -54,7 +54,7 @@ def get_variables_data(file: Path) -> dict[str, Any]:
     country_code = lookup_country_code(country)
 
     df = pd.read_csv(file, dtype=str, encoding=CONFIG["source"].get("encoding", "utf-8"))
-    ndigits_lau = max(df.lau.apply(len))
+    ndigits_lau = max(df.lau.astype(str).apply(len))
     df["lau"] = df.lau.apply(
         lau_transform.get(
             country_code, lambda x: lau_transform_ndigits(x, ndigits_lau)))
