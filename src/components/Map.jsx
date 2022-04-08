@@ -9,7 +9,7 @@ import config from "../config.json";
 import centroids from "../centroids.json";
 import index from "../dataindex.json";
 
-const url = "https://data.trenozoic.net/schoolpol";
+const url = config.baseUrl;
 const countries = config.countries;
 
 class Map extends React.Component {

@@ -1,4 +1,5 @@
 {
+  "baseUrl": "https://data.trenozoic.net/schoolpol",
   "shapefileRoot": "source-data/Shapefiles/",
   "EU": "Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035",
   "paletteDefaultColor": "#eeeeee",
