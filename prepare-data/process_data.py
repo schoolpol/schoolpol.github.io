@@ -10,6 +10,7 @@ import pycountry
 import pandas as pd
 
 
+keep_same = lambda x: x  # NOQA
 with open("src/config.json") as fp:
     CONFIG = json.load(fp)
 
@@ -26,7 +27,10 @@ def lau_transform_ndigits(lau, ndigits):
         return "0" * ndigits
 
 
-lau_transform = dict()
+lau_transform = {
+    "CH": lambda x: f"CH{x:0>4s}",
+    "UK": keep_same
+}
 
 
 def safe_int(n):
