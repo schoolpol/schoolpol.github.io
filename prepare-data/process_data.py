@@ -1,5 +1,7 @@
 import math
 import json
+import argparse
+import contextlib
 import collections
 from typing import Any
 from pathlib import Path
@@ -17,12 +19,19 @@ with open("src/config.json") as fp:
 
 def lau_transform_ndigits(lau, ndigits):
     "Generic LAU transformation function with ndigits padding"
-    return f"{lau:0{ndigits}d}"
+    try:
+        lau = int(lau)
+        return f"{lau:0{ndigits}d}"
+    except ValueError:
+        return "0" * ndigits
 
 
-lau_transform = {
-    "IT": (lambda x: lau_transform_ndigits(x, 6))
-}
+lau_transform = dict()
+
+
+def safe_int(n):
+    with contextlib.suppress(ValueError):
+        return int(n)
 
 
 def lookup_country_code(country: str) -> str:
@@ -44,12 +53,11 @@ def get_variables_data(file: Path) -> dict[str, Any]:
     country = file.stem.split("_")[0]
     country_code = lookup_country_code(country)
 
-    df = pd.read_csv(file, encoding=CONFIG["source"].get("encoding", "utf-8"))
-    ndigits_lau = max(df.lau.astype(str).apply(len))
-    if df.dtypes.lau == "int64":
-        df["lau"] = df.lau.apply(
-            lau_transform.get(
-                country_code, lambda x: lau_transform_ndigits(x, ndigits_lau)))
+    df = pd.read_csv(file, dtype=str, encoding=CONFIG["source"].get("encoding", "utf-8"))
+    ndigits_lau = max(df.lau.apply(len))
+    df["lau"] = df.lau.apply(
+        lau_transform.get(
+            country_code, lambda x: lau_transform_ndigits(x, ndigits_lau)))
     country_code = lookup_country_code(country)
 
     metadata = {"original_file": file.name, "year": year, "country": country_code}
@@ -59,7 +67,7 @@ def get_variables_data(file: Path) -> dict[str, Any]:
     ]
     for _, row in df.iterrows():
         for var in ed_columns:
-            percentage, value = row[var + "_pc"], row[var]
+            percentage, value = float(row[var + "_pc"]), safe_int(row[var])
             if not math.isnan(percentage):
                 data[var][row["lau"]] = {
                     "%": percentage,
@@ -89,10 +97,8 @@ def write_variables_data(file: Path):
     if not folder.exists():
         folder.mkdir(parents=True)
     for var in data["data"]:
-        if (
-            not is_empty(data["data"][var])
-            and not (output_filename := folder / (var + ".json")).exists()
-        ):
+        output_filename = folder / (var + ".json")
+        if not is_empty(data["data"][var]):
             with output_filename.open("w") as fp:
                 json.dump(
                     {**data["metadata"], "var": var, "data": data["data"][var]},
@@ -102,12 +108,15 @@ def write_variables_data(file: Path):
     print(" ", folder, "✔")
 
 
-def process():
+def process(prefix=None):
+    prefix = prefix or ""
     source_folder = Path(CONFIG["source"]["location"])
-    print("Processing into data/cc/year/variable.json...")
-    for file in source_folder.glob("*/*.csv"):
+    for file in source_folder.glob(f"*/{prefix}*.csv"):
         write_variables_data(file)
 
 
 if __name__ == "__main__":
-    process()
+    parser = argparse.ArgumentParser(description="Prepare data for Schoolpol web interface")
+    parser.add_argument("-p", "--prefix", help="Generate data from source files with this prefix")
+    args = parser.parse_args()
+    process(args.prefix)
