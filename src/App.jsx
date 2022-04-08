@@ -7,7 +7,7 @@ export default function App() {
     <div>
       <div id="blurb">
         <h1><About /> Schoolpol: The Transformation of Post War Education</h1>
-        <p>Project looking at how policies have affected education after World War II; this map shows
+        <p>Project looking at how policies have affected education. This map shows
           how <abbr title="International Standard Classification of Education">ISCED</abbr> levels within countries, across time.
           Tap About for more.
         </p>
