@@ -11,6 +11,19 @@ import pandas as pd
 with open("src/config.json") as fp:
     CONFIG = json.load(fp)
 
+# lau_transform_* functions transform the lau code in the data
+# into a format that matches the geojson.
+
+
+def lau_transform_ndigits(lau, ndigits):
+    "Generic LAU transformation function with ndigits padding"
+    return f"{lau:0{ndigits}d}"
+
+
+lau_transform = {
+    "IT": (lambda x: lau_transform_ndigits(x, 6))
+}
+
 
 def lookup_country_code(country: str) -> str:
     "Look up country codes"
@@ -34,7 +47,9 @@ def get_variables_data(file: Path) -> dict[str, Any]:
     df = pd.read_csv(file, encoding=CONFIG["source"].get("encoding", "utf-8"))
     ndigits_lau = max(df.lau.astype(str).apply(len))
     if df.dtypes.lau == "int64":
-        df["lau"] = df.lau.apply(lambda x: f"{x:0{ndigits_lau}d}")
+        df["lau"] = df.lau.apply(
+            lau_transform.get(
+                country_code, lambda x: lau_transform_ndigits(x, ndigits_lau)))
     country_code = lookup_country_code(country)
 
     metadata = {"original_file": file.name, "year": year, "country": country_code}
