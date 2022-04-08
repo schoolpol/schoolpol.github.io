@@ -28,9 +28,10 @@ def lau_transform_ndigits(lau, ndigits):
 
 
 lau_transform = {
-    "NZ": lambda x: f"0{x}",
     "CH": lambda x: f"CH{x:0>4s}",
-    "UK": keep_same
+    "NZ": lambda x: f"0{x}",
+    "UK": keep_same,
+    "US": lambda x: "{0:0>2s}{1:0>3s}".format(*x.split("_"))
 }
 
 
