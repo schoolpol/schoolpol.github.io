@@ -3,6 +3,8 @@ export function LAU(country, feature) {
   switch(country) {
     case 'CA':
       return feature.CCSUID;
+    case 'IE':
+      return feature.launame;
     case 'NZ':
       return feature.lau;
     case 'US':
@@ -19,6 +21,10 @@ export function getLauIdName(country, feature) {
     case 'CA':
       LAU_ID = feature.CCSUID;
       LAU_NAME = feature.CCSNAME;
+      break;
+    case 'IE':
+      LAU_ID = feature.launame;
+      LAU_NAME = feature.launame;
       break;
     case 'NZ':
       LAU_ID = feature.lau;

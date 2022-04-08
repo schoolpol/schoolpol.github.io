@@ -29,6 +29,7 @@ def lau_transform_ndigits(lau, ndigits):
 
 lau_transform = {
     "CA": keep_same,
+    "IE": keep_same,
     "CH": lambda x: f"CH{x:0>4s}",
     "NZ": lambda x: f"0{x}",
     "UK": keep_same,
@@ -61,6 +62,11 @@ def get_variables_data(file: Path) -> dict[str, Any]:
     country_code = lookup_country_code(country)
 
     df = pd.read_csv(file, dtype=str, encoding=CONFIG["source"].get("encoding", "utf-8"))
+
+    # some countries use LAU names for mapping
+    if country_code in ['IE']:
+        df['lau'] = df.launame
+
     ndigits_lau = max(df.lau.astype(str).apply(len))
     df["lau"] = df.lau.apply(
         lau_transform.get(
