@@ -28,6 +28,7 @@ def lau_transform_ndigits(lau, ndigits):
 
 
 lau_transform = {
+    "NZ": lambda x: f"0{x}",
     "CH": lambda x: f"CH{x:0>4s}",
     "UK": keep_same
 }
