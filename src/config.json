@@ -20,7 +20,7 @@
     },
     "CH": {
       "name": "Switzerland",
-      "zoom": 7,
+      "zoom": 8,
       "EU": true
     },
     "DE": {
@@ -47,6 +47,7 @@
     },
     "GR": {
       "name": "Greece",
+      "zoom": 7,
       "EU": true
     },
     "IT": {
@@ -64,6 +65,7 @@
     },
     "PT": {
       "name": "Portugal",
+      "zoom": 7,
       "EU": true
     },
     "SE": {
