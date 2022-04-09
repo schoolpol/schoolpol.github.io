@@ -2,7 +2,7 @@
   "baseUrl": "https://data.trenozoic.net/schoolpol",
   "shapefileRoot": "source-data/Shapefiles/",
   "EU": "Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035",
-  "paletteDefaultColor": "#eeeeee",
+  "paletteDefaultColor": "#333333",
   "source": {
     "location": "source-data/Data/Human_Capital",
     "encoding": "iso-8859-1"
