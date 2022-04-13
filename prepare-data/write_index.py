@@ -44,12 +44,13 @@ class Index:
             country, year, variable = file.relative_to(self.source_path).parts
         except (ValueError, TypeError):
             return
-        with contextlib.suppress(AssertionError):
-            assert len(country) == 2
-            assert len(year) == 4
-            assert variable.startswith("ed_isced")
-            assert variable.endswith(".json")
-        self._add(country, int(year), variable.removesuffix(".json"))
+        if (
+            len(country) == 2
+            and len(year) == 4
+            and variable.startswith("ed_isced")
+            and variable.endswith(".json")
+        ):
+            self._add(country, int(year), variable.removesuffix(".json"))
 
     def __str__(self):
         return json.dumps(self._index, sort_keys=True, indent=2)
