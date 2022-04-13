@@ -29,8 +29,9 @@ def lau_transform_ndigits(lau, ndigits):
 
 lau_transform = {
     "CA": keep_same,
-    "IE": keep_same,
     "CH": lambda x: f"CH{x:0>4s}",
+    "GR": keep_same,
+    "IE": keep_same,
     "NZ": lambda x: f"0{x}",
     "UK": keep_same,
     "US": lambda x: "{0:0>2s}{1:0>3s}".format(*x.split("_"))
@@ -62,6 +63,15 @@ def get_variables_data(file: Path) -> dict[str, Any]:
     country_code = lookup_country_code(country)
 
     df = pd.read_csv(file, dtype=str, encoding=CONFIG["source"].get("encoding", "utf-8"))
+    variables = set(CONFIG["variables"]) & set(df.columns)
+    if not variables:
+        print(f"- {file} [ERROR, no valid variable found]")
+        return None
+    pc_variables = {x + "_pc" for x in variables}
+    if not pc_variables < set(df.columns):
+        print(f"- {file} [ERROR, percentage variables missing]")
+        print(" ", pc_variables - set(df.columns))
+        return None
 
     # some countries use LAU names for mapping
     if country_code in ['IE']:
@@ -75,11 +85,8 @@ def get_variables_data(file: Path) -> dict[str, Any]:
 
     metadata = {"original_file": file.name, "year": year, "country": country_code}
     data = collections.defaultdict(dict)
-    ed_columns = [
-        col for col in df.columns if col.startswith("ed_") and not col.endswith("_pc")
-    ]
     for _, row in df.iterrows():
-        for var in ed_columns:
+        for var in CONFIG["variables"]:
             percentage, value = float(row[var + "_pc"]), safe_int(row[var])
             if not math.isnan(percentage):
                 data[var][row["lau"]] = {
@@ -101,7 +108,8 @@ def is_empty(data: dict[str, Any]) -> bool:
 
 
 def write_variables_data(file: Path):
-    data = get_variables_data(file)
+    if not (data := get_variables_data(file)):
+        return None
     folder = (
         Path(CONFIG["source"].get("output", "src/data"))
         / data["metadata"]["country"]
