@@ -3,6 +3,17 @@
   "shapefileRoot": "source-data/Shapefiles/",
   "EU": "Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035",
   "paletteDefaultColor": "#333333",
+  "variables": [
+    "ed_isced_0to2",
+    "ed_isced_0to2_f",
+    "ed_isced_0to2_m",
+    "ed_isced_3to5",
+    "ed_isced_3to5_f",
+    "ed_isced_3to5_m",
+    "ed_isced_6to8",
+    "ed_isced_6to8_f",
+    "ed_isced_6to8_m"
+  ],
   "source": {
     "location": "source-data/Data/Human_Capital",
     "encoding": "iso-8859-1"
