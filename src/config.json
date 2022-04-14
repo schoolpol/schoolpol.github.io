@@ -86,6 +86,7 @@
     },
     "AU": {
       "name": "Australia",
+      "zoom": 5,
       "shapefile": "Australia/SA2_2016_AUST"
     },
     "CA": {
