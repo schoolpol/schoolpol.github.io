@@ -84,6 +84,10 @@
       "name": "United Kingdom",
       "EU": true
     },
+    "AU": {
+      "name": "Australia",
+      "shapefile": "Australia/SA2_2016_AUST"
+    },
     "CA": {
       "name": "Canada",
       "zoom": 5,

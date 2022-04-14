@@ -18,6 +18,23 @@
       2018
     ]
   },
+  "AU": {
+    "initialState": {
+      "variable": "ed_isced_0to2",
+      "year": 2016
+    },
+    "variables": [
+      "ed_isced_0to2",
+      "ed_isced_3to5",
+      "ed_isced_6to8"
+    ],
+    "years": [
+      1986,
+      1996,
+      2006,
+      2016
+    ]
+  },
   "BE": {
     "initialState": {
       "variable": "ed_isced_0to2",

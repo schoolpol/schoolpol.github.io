@@ -1,6 +1,8 @@
 export function LAU(country, feature) {
   // returns LAU value from GeoJSON Feature to match with data
   switch(country) {
+    case 'AU':
+      return feature.SA2_MAIN16;
     case 'CA':
       return feature.CCSUID;
     case 'IE':
@@ -18,6 +20,10 @@ export function getLauIdName(country, feature) {
   let LAU_ID = null;
   let LAU_NAME = null;
   switch(country) {
+    case 'AU':
+      LAU_ID = feature.SA2_MAIN16;
+      LAU_NAME = feature.SA2_NAME16;
+      break;
     case 'CA':
       LAU_ID = feature.CCSUID;
       LAU_NAME = feature.CCSNAME;
