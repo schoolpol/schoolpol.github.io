@@ -1,4 +1,5 @@
 # Depends: gdal (for ogr2ogr)
+import argparse
 import subprocess
 import json
 from pathlib import Path
@@ -50,5 +51,8 @@ def convert(code: str, overwrite=False):
 
 
 if __name__ == "__main__":
-    for c in COUNTRIES:
+    parser = argparse.ArgumentParser(description="Convert shapefiles to GeoJSON")
+    parser.add_argument("-c", "--countries", help="List of countries to convert")
+    args = parser.parse_args()
+    for c in args.countries.split(",") if args.countries else COUNTRIES:
         convert(c)
