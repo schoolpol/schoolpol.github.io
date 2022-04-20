@@ -32,7 +32,7 @@ lau_transform = {
     "CH": lambda x: f"CH{x:0>4s}",
     "GR": keep_same,
     "IE": keep_same,
-    "NZ": lambda x: f"0{x}",
+    "NZ": lambda x: f"0{x}" if len(x) > 1 else f"00{x}",
     "UK": keep_same,
     "US": lambda x: "{0:0>2s}{1:0>3s}".format(*x.split("_"))
 }
