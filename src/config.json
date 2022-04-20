@@ -73,7 +73,7 @@
     "PT": {
       "name": "Portugal",
       "zoom": 7,
-      "EU": true
+      "shapefile": "Portugal/concelhos"
     },
     "SE": {
       "name": "Sweden",
