@@ -181,7 +181,7 @@ class Map extends React.Component {
         </span>
       ) : (
         <span>
-          <strong>{this.state.launame}</strong> (no data)
+          <strong>{this.state.launame}</strong> (id={this.state.lau}, no data)
         </span>
       );
     return (
