@@ -174,7 +174,7 @@ class Map extends React.Component {
   render() {
     let hoverMessage = <strong>Hover on a local area to see details</strong>;
     if (this.state.lau !== null)
-      hoverMessage = this.state.value ? (
+      hoverMessage = this.state.value !== undefined ? (
         <span>
           <strong>{this.state.launame}</strong> {this.state.value} (
           {Math.round(this.state.percentage)}%)
