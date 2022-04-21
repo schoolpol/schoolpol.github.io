@@ -16,8 +16,9 @@ h1 {
 }
 
 a#download {
-  background: #002147;
   color: white;
+  background: #002147;
+  border: 1px solid grey;
   padding: 5px 10px;
   text-decoration: none;
 }
@@ -50,8 +51,9 @@ div#chooser {
   width: 100%;
   opacity: 0.8;
   position: absolute;
-  margin-top: 90px;
+  margin-top: 87px;
   padding: -10px;
+  line-height: 2.5;
   padding-left: 60px;
   z-index: 999;
 }
@@ -82,7 +84,7 @@ div#lauInfo {
   min-width: 400px;
   position: absolute;
   z-index: 999;
-  margin-top: 130px;
+  margin-top: 93vh;
   margin-left: 50px;
   border-radius: 7px;
   opacity: 0.8;
@@ -171,4 +173,8 @@ button.button:hover {
 }
 .popup-content {
   -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+
+@media only screen and (max-width: 600px) {
+  div#blurb p { display: none; }
 }
