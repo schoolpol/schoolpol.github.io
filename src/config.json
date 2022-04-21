@@ -59,8 +59,7 @@
     },
     "GR": {
       "name": "Greece",
-      "zoom": 7,
-      "EU": true
+      "zoom": 7
     },
     "IT": {
       "name": "Italy",
