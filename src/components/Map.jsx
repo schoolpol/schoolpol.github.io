@@ -5,7 +5,7 @@ import React from "react";
 import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
 
 import { getColor, legendValues } from "../palette";
-import { LAU, getLauIdName } from "../LAU";
+import { LAU } from "../LAU";
 import config from "../config.json";
 import centroids from "../centroids.json";
 import index from "../dataindex.json";
@@ -61,7 +61,7 @@ class Map extends React.Component {
 
   hover(e) {
     let layer = e.target;
-    const { LAU_ID, LAU_NAME } = getLauIdName(
+    const { LAU_ID, LAU_NAME } = LAU(
       this.state.country,
       layer.feature.properties
     );
@@ -76,7 +76,7 @@ class Map extends React.Component {
 
   style(feature) {
     let percentage =
-      this.state.variableData?.[LAU(this.state.country, feature.properties)]?.[
+      this.state.variableData?.[LAU(this.state.country, feature.properties).LAU_ID]?.[
         "%"
       ];
     let base = {
@@ -85,7 +85,7 @@ class Map extends React.Component {
       fillOpacity: 0.8,
     };
     let highlight =
-      LAU(this.state.country, feature.properties) === this.state.lau
+      LAU(this.state.country, feature.properties).LAU_ID === this.state.lau
         ? {
             weight: 3,
             color: "black",
