@@ -13,6 +13,10 @@ import index from "../dataindex.json";
 const url = config.baseUrl;
 const countries = config.countries;
 
+function sourceUrl(countryCode, year) {
+  const countryName = config.countries[countryCode].name;
+  return `${config.sourceBaseUrl}/${countryName}/${countryName}_${year}.csv`;
+}
 
 class Map extends React.Component {
   _mounted = false;
@@ -57,7 +61,10 @@ class Map extends React.Component {
 
   hover(e) {
     let layer = e.target;
-    const { LAU_ID, LAU_NAME } = getLauIdName(this.state.country, layer.feature.properties);
+    const { LAU_ID, LAU_NAME } = getLauIdName(
+      this.state.country,
+      layer.feature.properties
+    );
     let data = this.state.variableData?.[LAU_ID];
     this.setState({
       lau: LAU_ID,
@@ -69,7 +76,9 @@ class Map extends React.Component {
 
   style(feature) {
     let percentage =
-      this.state.variableData?.[LAU(this.state.country, feature.properties)]?.["%"];
+      this.state.variableData?.[LAU(this.state.country, feature.properties)]?.[
+        "%"
+      ];
     let base = {
       fillColor: getColor(this.state.variable, percentage),
       weight: 0,
@@ -174,16 +183,17 @@ class Map extends React.Component {
   render() {
     let hoverMessage = <strong>Hover on a local area to see details</strong>;
     if (this.state.lau !== null)
-      hoverMessage = this.state.value !== undefined ? (
-        <span>
-          <strong>{this.state.launame}</strong> {this.state.value} (
-          {Math.round(this.state.percentage)}%)
-        </span>
-      ) : (
-        <span>
-          <strong>{this.state.launame}</strong> (id={this.state.lau}, no data)
-        </span>
-      );
+      hoverMessage =
+        this.state.value !== undefined ? (
+          <span>
+            <strong>{this.state.launame}</strong> {this.state.value} (
+            {Math.round(this.state.percentage)}%)
+          </span>
+        ) : (
+          <span>
+            <strong>{this.state.launame}</strong> (id={this.state.lau}, no data)
+          </span>
+        );
     return (
       <div id="content">
         <div id="chooser">
@@ -227,6 +237,12 @@ class Map extends React.Component {
               <option value={y}>{y}</option>
             ))}
           </select>
+          <a
+            id="download"
+            href={sourceUrl(this.state.country, this.state.year)}
+          >
+            Download data
+          </a>
         </div>
 
         <div id="map">
