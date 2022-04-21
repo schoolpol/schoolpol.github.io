@@ -1,24 +1,4 @@
 export function LAU(country, feature) {
-  // returns LAU value from GeoJSON Feature to match with data
-  switch(country) {
-    case 'AU':
-      return feature.SA2_MAIN16;
-    case 'CA':
-      return feature.CCSUID;
-    case 'IE':
-      return feature.launame;
-    case 'NZ':
-      return feature.lau;
-    case 'PT':
-      return feature.CCA_2;
-    case 'US':
-      return feature.GEOID;
-    default:
-      return feature.LAU_ID;
-  }
-}
-
-export function getLauIdName(country, feature) {
   let LAU_ID = null;
   let LAU_NAME = null;
   switch(country) {
@@ -52,5 +32,3 @@ export function getLauIdName(country, feature) {
   }
   return { LAU_ID, LAU_NAME };
 }
-
-
