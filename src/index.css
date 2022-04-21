@@ -15,6 +15,17 @@ h1 {
   margin-left: 10px;
 }
 
+a#download {
+  background: #002147;
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+a#download:hover {
+  background: #111111;
+}
+
 div#blurb {
   position: absolute;
   z-index: 999;
