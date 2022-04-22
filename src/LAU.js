@@ -10,6 +10,10 @@ export function LAU(country, feature) {
       LAU_ID = feature.CCSUID;
       LAU_NAME = feature.CCSNAME;
       break;
+    case 'DE':
+      LAU_ID = feature.NUTS_ID;
+      LAU_NAME = feature.NAME_LATN;
+      break;
     case 'GR':
       LAU_ID = feature.NUTS_ID;
       LAU_NAME = feature.NAME_LATN;
