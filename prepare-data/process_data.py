@@ -30,6 +30,7 @@ def lau_transform_ndigits(lau, ndigits):
 lau_transform = {
     "CA": keep_same,
     "CH": lambda x: f"CH{x:0>4s}",
+    "DE": keep_same,
     "GR": keep_same,
     "IE": keep_same,
     "NZ": lambda x: f"0{x}" if len(x) > 1 else f"00{x}",
@@ -74,8 +75,10 @@ def get_variables_data(file: Path) -> dict[str, Any]:
         return None
 
     # some countries use LAU names for mapping
-    if country_code in ['IE']:
+    if country_code == 'IE':
         df['lau'] = df.launame
+    if country_code == 'DE':
+        df['lau'] = df.NUTS3CODE
 
     ndigits_lau = max(df.lau.astype(str).apply(len))
     df["lau"] = df.lau.apply(
