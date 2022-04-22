@@ -23,7 +23,7 @@ class Map extends React.Component {
 
   constructor(props) {
     super(props);
-    let initCountry = "AT";
+    let initCountry = config.initialCountry;
     this.state = {
       country: initCountry,
       variable: index[initCountry].initialState.variable,
