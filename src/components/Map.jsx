@@ -13,11 +13,6 @@ import index from "../dataindex.json";
 const url = config.baseUrl;
 const countries = config.countries;
 
-function sourceUrl(countryCode, year) {
-  const countryName = config.countries[countryCode].name;
-  return `${config.sourceBaseUrl}/${countryName}/${countryName}_${year}.csv`;
-}
-
 class Map extends React.Component {
   _mounted = false;
 
@@ -237,12 +232,6 @@ class Map extends React.Component {
               <option value={y}>{y}</option>
             ))}
           </select>
-          <a
-            id="download"
-            href={sourceUrl(this.state.country, this.state.year)}
-          >
-            Download data
-          </a>
         </div>
 
         <div id="map">
