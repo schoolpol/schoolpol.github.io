@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://schoolpol.trenozoic.net",
+  "baseUrl": "https://raw.githubusercontent.com/schoolpol/schoolpol.github.io/main/src/data",
   "shapefileRoot": "source-data/Shapefiles/",
   "EU": "Europe/LAU_RG_01M_2018_3035.shp/LAU_RG_01M_2018_3035",
   "paletteDefaultColor": "#333333",
