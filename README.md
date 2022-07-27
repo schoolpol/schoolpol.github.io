@@ -74,4 +74,14 @@ There is a **countries** section that lists the countries to be displayed in the
 
 ## Deployment
 
-Deployment is done on GitHub Pages, with the production build generated using `npm run build`.
+Deployment is done on GitHub Pages, with the production build generated using `npm run build`
+and stored in the [docs](docs) folder. Once the build is generated, you can preview the
+site locally by changing to the docs folder and running a local HTTP server, as an example:
+
+    python3 -m http.server
+
+which will open the site at http://localhost:8000. To make the changes live, commit
+the docs folder to version control:
+
+    git commit docs -m 'Update build'
+    git push
