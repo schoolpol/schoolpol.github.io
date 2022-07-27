@@ -52,9 +52,8 @@ div#chooser {
   opacity: 0.8;
   position: absolute;
   margin-top: 87px;
-  padding: -10px;
   line-height: 2.5;
-  padding-left: 60px;
+  padding-left: 60px !important;
   z-index: 999;
 }
 
