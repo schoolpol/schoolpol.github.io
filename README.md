@@ -10,6 +10,14 @@ Classification of Education
 classification. The map shows education levels corresponding to three levels:
 0-2, 3-5 and 6-8, optionally grouped by gender.
 
+## Cloning the repository
+
+    git clone git@github.com:schoolpol/schoolpol.github.io.git
+      OR
+    gh repo clone schoolpol/schoolpol.github.io
+    
+You will need [git](https://git-scm.com), and either [GitHub Desktop](https://desktop.github.com) or the command-line [gh](https://cli.github.com) installed.
+
 ## Setup
 
 To setup local development, there are two pathways -- with nix and without. [Nix](https://nixos.org/download.html) is a package manager that supports macOS and Linux (Windows is partially supported via Windows Subsystem for Linux).
@@ -32,9 +40,10 @@ The map uses [Python](https://www.python.org) with the
 Use `poetry install` to install the Python dependencies, and `npm ci` to
 install the node.js dependencies. Use `poetry shell` to enter a subshell where you can run the Python code.
 
+
 ## Generating the data files
 
-The original source data files are in `source-data`:
+The original source data files are in `source-data`. First create the folder in the cloned repository (`mkdir source-data`):
 
 * **source-data/Data**: contains data files by country, currently only has the 'Human_Capital' folder which has data on educational levels
 * **source-data/Shapefiles**: Shapefiles in .shp format; these are converted to GeoJSON by [prepare-data/geojson.py](prepare-data/geojson.py)
