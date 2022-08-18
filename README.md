@@ -37,6 +37,9 @@ The map uses [Python](https://www.python.org) with the
 [poetry](https://python-poetry.org/) package manager and
 [Node.js](https://nodejs.org) (use the LTS version).
 
+On macOS, poetry can be installed by using [brew](https://brew.sh):
+`brew install poetry`. You will need to install brew first, if it is not present on your system.
+
 Use `poetry install` to install the Python dependencies, and `npm ci` to
 install the node.js dependencies. Use `poetry shell` to enter a subshell where you can run the Python code.
 
