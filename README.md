@@ -88,6 +88,12 @@ There is a **countries** section that lists the countries to be displayed in the
 * **zoom**: Zoom level to use for the country. Specify higher numbers for smaller countries and lower numbers for larger countries. The default zoom level is 6.
 * **shapefile**: Path to shapefile relative to **shapefileRoot**. If specified geojson.py generates data from this shapefile. Do not specify the .shp extension, that is assumed.
 
+## Adding source-data
+
+   git add source-data
+   git commit -a -m 'Add source-data'
+   git push origin main
+   
 ## Deployment
 
 Deployment is done on GitHub Pages, with the production build generated using `npm run build`
