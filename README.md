@@ -60,7 +60,7 @@ The source files in **source-data** are used to generate the JSON files in **src
 To generate the GeoJSON from ArcGIS shapefiles:
 
     python prepare-data/geojson.py  # nix
-    poetry run python prepare-data/process_data.py  # poetry
+    poetry run python prepare-data/geojson.py  # poetry
 
 
 Accurate boundary representations can sometimes make the resulting GeoJSON file large. It is **recommended** to keep the GeoJSON file below 10 MiB. You can use the online service https://mapshaper.org for this. This step is not automated and is done on a case-by-case basis.
