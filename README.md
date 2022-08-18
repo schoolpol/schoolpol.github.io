@@ -90,9 +90,9 @@ There is a **countries** section that lists the countries to be displayed in the
 
 ## Adding source-data
 
-   git add source-data
-   git commit -a -m 'Add source-data'
-   git push origin main
+    git add source-data
+    git commit -a -m 'Add source-data'
+    git push origin main
    
 ## Deployment
 
