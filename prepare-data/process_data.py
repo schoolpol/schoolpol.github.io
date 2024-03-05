@@ -31,11 +31,11 @@ def lau_transform_ndigits(lau, ndigits):
 
 lau_transform = {
     "CA": keep_same,
-    "CH": lambda x: f"CH{x:0>4s}",
+    "CH": keep_same,
     "DE": keep_same,
     "GR": keep_same,
     "IE": keep_same,
-    "NZ": lambda x: f"0{x}" if len(x) > 1 else f"00{x}",
+    "NZ": keep_same,
     "UK": keep_same,
     "US": lambda x: "{0:05d}".format(int(x)),
 }
