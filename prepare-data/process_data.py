@@ -94,8 +94,6 @@ def get_variables_data(file: Path) -> dict[str, Any]:
     country_code = lookup_country_code(country)
 
     df = pd.read_csv(file, dtype=str, encoding=CONFIG["source"].get("encoding", "utf-8"))
-    variables = set(CONFIG["variables"]) & set(df.columns)
-    pc_variables = {x + "_pc" for x in variables}
 
     # some countries use LAU names for mapping
     if country_code == 'IE':
@@ -112,7 +110,7 @@ def get_variables_data(file: Path) -> dict[str, Any]:
     metadata = {"original_file": file.name, "year": year, "country": country_code}
     data = collections.defaultdict(dict)
     for _, row in df.iterrows():
-        for var in CONFIG["variables"]:
+        for var in set(CONFIG["variables"]) & set(df.columns):
             percentage, value = float(row[var + "_pc"]), safe_int(row[var])
             if not math.isnan(percentage):
                 data[var][row["lau"]] = {
@@ -161,7 +159,7 @@ def process(prefix=None):
     # first check the data
     with Pool(4) as p:
         result = p.map(check_data, source_folder.glob(f"*/{prefix}*.csv"))
-    if (errors := filter(lambda x: isinstance(x, str), result)):
+    if errors := list(filter(lambda x: isinstance(x, str), result)):
         print("Errors:\n" + "\n".join(errors))
         sys.exit(1)
     with Pool(4) as p:
