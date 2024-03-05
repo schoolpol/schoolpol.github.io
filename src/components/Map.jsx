@@ -13,6 +13,12 @@ import index from "../dataindex.json";
 const url = config.baseUrl;
 const countries = config.countries;
 
+const ISCEDCodes = {
+  ed_isced_0to2: '0 - 2',
+  ed_isced_3to5: '3 - 5',
+  ed_isced_6to8: '6 - 8',
+};
+
 class Map extends React.Component {
   _mounted = false;
 
@@ -22,6 +28,7 @@ class Map extends React.Component {
     this.state = {
       country: initCountry,
       variable: index[initCountry].initialState.variable,
+      supportedVariables: index[initCountry].variables,
       year: index[initCountry].initialState.year,
       position: centroids[initCountry],
       geoJSON: null,
@@ -107,16 +114,17 @@ class Map extends React.Component {
   }
 
   changeCountry(e) {
-    let country = e.target.value;
-    let variable = index[country].variables.includes(this.state.variable)
+    const country = e.target.value;
+    const variable = index[country].variables.includes(this.state.variable)
       ? this.state.variable
       : index[country].initialState.variable;
-    let year = index[country].initialState.year;
-    let years = index[country].years;
+    const year = index[country].initialState.year;
+    const years = index[country].years;
+    const supportedVariables = index[country].variables;
     fetch(`${url}/${country}/${country}.geojson`)
       .then((res) => res.json())
       .then((geoJSON) =>
-        this.setState({ country, variable, year, years, geoJSON })
+        this.setState({ country, variable, year, years, geoJSON, supportedVariables })
       );
     fetch(`${url}/${country}/${year}/${variable}${this.state.gender}.json`)
       .then((res) => res.json())
@@ -209,9 +217,9 @@ class Map extends React.Component {
             value={this.state.variable}
             onChange={this.changeVariable.bind(this)}
           >
-            <option value="ed_isced_0to2">0 - 2</option>
-            <option value="ed_isced_3to5">3 - 5</option>
-            <option value="ed_isced_6to8">6 - 8</option>
+          {this.state.supportedVariables.map((variable) => (
+            <option value={variable}>{ISCEDCodes[variable]}</option>
+          ))}
           </select>
           <select
             name="gender"
