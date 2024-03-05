@@ -31,9 +31,9 @@ div#blurb {
   position: absolute;
   z-index: 999;
   width: 100%;
-  background: #002147;
-  color: white;
-  opacity: 0.8;
+  background: white;
+  color: brown;
+  opacity: 0.95;
   padding-left: 50px;
 }
 
@@ -46,7 +46,7 @@ div#blurb p {
 
 div#chooser {
   /* background: goldenrod; */
-  padding-top: 5px;
+  padding-top: 15px;
   color: white;
   width: 100%;
   opacity: 0.8;
@@ -85,7 +85,6 @@ div#lauInfo {
   z-index: 999;
   margin-top: 90vh;
   margin-left: 50px;
-  border-radius: 7px;
   opacity: 0.8;
 }
 
@@ -102,7 +101,6 @@ div#lauInfo {
   margin: 0;
   background: rgba(60, 60, 60, 0.85);
   width: 110px;
-  border-radius: 5px;
 }
 #legend li {
   font-size: 11pt;
@@ -128,17 +126,28 @@ label {
 }
 
 div#aboutmodal {
-  background: #002147;
+  background: white;
   opacity: 0.9;
-  color: white;
+  color: #111;
   padding: 20px;
   width: 80%;
   margin: auto;
   max-width: 600px;
-  border-radius: 10px;
 }
 
-div#aboutmodal a { color: yellow }
+div#aboutmodal a { color: brown }
+div#aboutmodal p { line-height: 1.5 }
+
+p.button a {
+  padding: 15px;
+  background-color: brown;
+  color: white !important;
+  text-decoration: none;
+}
+p.button {
+  margin-top: 40px;
+}
+p.escape { margin-top: 20px;}
 
 button.button {
   background: #eeeeee;
