@@ -13,8 +13,6 @@ classification. The map shows education levels corresponding to three levels:
 ## Cloning the repository
 
     git clone git@github.com:schoolpol/schoolpol.github.io.git
-      OR
-    gh repo clone schoolpol/schoolpol.github.io
     
 You will need [git](https://git-scm.com), and either [GitHub Desktop](https://desktop.github.com) or the command-line [gh](https://cli.github.com) installed.
 
@@ -22,27 +20,14 @@ You will need [git](https://git-scm.com), and either [GitHub Desktop](https://de
 
 To setup local development, there are two pathways -- with nix and without. [Nix](https://nixos.org/download.html) is a package manager that supports macOS and Linux (Windows is partially supported via Windows Subsystem for Linux).
 
-### Nix
-
-* **[Install nix](https://nixos.org/download.html)** if not present
-  (single-user installation is fine).
-* Type `nix-shell` and press <kbd>enter</kbd> or <kbd>return</kbd>. This will create a subshell (like
-  Python or conda virtual environment), which will have all the programs
-  necessary to build the map.
-* Install the Node.js dependencies: `npm ci`
-
-### Without nix
-
-The map uses [Python](https://www.python.org) with the
-[poetry](https://python-poetry.org/) package manager and
+The map uses [Python](https://www.python.org) with the [poetry](https://python-poetry.org/) package manager and
 [Node.js](https://nodejs.org) (use the LTS version).
 
 On macOS, poetry can be installed by using [brew](https://brew.sh):
 `brew install poetry`. Node.js and npm can be installed using `brew install npm`. You will need to install brew first, if it is not present on your system.
 
 Use `poetry install` to install the Python dependencies, and `npm ci` to
-install the node.js dependencies. Use `poetry shell` to enter a subshell where you can run the Python code.
-
+install the node.js dependencies.
 
 ## Generating the data files
 
@@ -52,16 +37,20 @@ The original source data files are in `source-data`. First create the folder in 
 * **source-data/Shapefiles**: Shapefiles in .shp format; these are converted to GeoJSON by [prepare-data/geojson.py](prepare-data/geojson.py)
 
 The source files in **source-data** are used to generate the JSON files in **src/data**:
+```shell
+poetry run python prepare-data/process_data.py
+```
 
-    python prepare-data/process_data.py  # nix
-    poetry run python prepare-data/process_data.py  # poetry
-
+Unless no years are being added/deleted, regenerate the `dataindex.json` that
+is used by the map to find the list of years and variables for each country:
+```shell
+poetry run python prepare-data/write_index.py
+```
 
 To generate the GeoJSON from ArcGIS shapefiles:
-
-    python prepare-data/geojson.py  # nix
-    poetry run python prepare-data/geojson.py  # poetry
-
+```
+poetry run python prepare-data/geojson.py
+```
 
 Accurate boundary representations can sometimes make the resulting GeoJSON file large. It is **recommended** to keep the GeoJSON file below 10 MiB. You can use the online service https://mapshaper.org for this. This step is not automated and is done on a case-by-case basis.
 
