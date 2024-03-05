@@ -1,3 +1,4 @@
+import sys
 import math
 import json
 import argparse
@@ -5,6 +6,7 @@ import contextlib
 import collections
 from typing import Any
 from pathlib import Path
+from multiprocessing import Pool
 
 import pycountry
 import pandas as pd
@@ -50,29 +52,50 @@ def lookup_country_code(country: str) -> str:
         return "UK"  # Use UK as this is used in the shapefile
     return pycountry.countries.lookup(country).alpha_2
 
+def check_data(file: Path) -> str | None:
+    """
+    Checks source data files to see if they are valid
+    """
+    try:
+        _ = int(file.stem.split("_")[1])
+    except (ValueError, IndexError):
+        return f"{file}: is not in format country_year.csv"
+    country = file.stem.split("_")[0]
+    country_code = lookup_country_code(country)
+
+    df = pd.read_csv(file, dtype=str, encoding=CONFIG["source"].get("encoding", "utf-8"))
+    if df.empty:
+        return f"{file}: is empty"
+    variables = set(CONFIG["variables"]) & set(df.columns)
+    if not variables:
+        return f"{file}: no valid variable found"
+    pc_variables = {x + "_pc" for x in variables}
+    if not pc_variables < set(df.columns):
+        return f"{file}: percentage variables missing {pc_variables - set(df.columns)}"
+
+    # some countries use LAU names for mapping
+    if country_code == 'IE' and 'launame' not in df.columns:
+        return f"{file}: Ireland file does not have 'launame' column"
+    if country_code == 'DE' and 'NUTS3CODE' not in df.columns:
+        return f"{file}: Germany file does not have 'NUTS3CODE' column"
+    elif 'lau' not in df.columns:
+        return f"{file}: 'lau' not in columns"
+    else:
+        return None
+
 
 def get_variables_data(file: Path) -> dict[str, Any]:
     """
     Writes out split JSON files of the form cc/cc_year_variable.json
     where cc is the ISO 3166-1 two letter country code
     """
-    try:
-        year = int(file.stem.split("_")[1])
-    except (ValueError, IndexError):
-        raise ValueError(f"{file} is not in format country_year.csv")
+    year = int(file.stem.split("_")[1])
     country = file.stem.split("_")[0]
     country_code = lookup_country_code(country)
 
     df = pd.read_csv(file, dtype=str, encoding=CONFIG["source"].get("encoding", "utf-8"))
     variables = set(CONFIG["variables"]) & set(df.columns)
-    if not variables:
-        print(f"- {file} [ERROR, no valid variable found]")
-        return None
     pc_variables = {x + "_pc" for x in variables}
-    if not pc_variables < set(df.columns):
-        print(f"- {file} [ERROR, percentage variables missing]")
-        print(" ", pc_variables - set(df.columns))
-        return None
 
     # some countries use LAU names for mapping
     if country_code == 'IE':
@@ -135,9 +158,14 @@ def write_variables_data(file: Path):
 def process(prefix=None):
     prefix = prefix or ""
     source_folder = Path(CONFIG["source"]["location"])
-    for file in source_folder.glob(f"*/{prefix}*.csv"):
-        write_variables_data(file)
-
+    # first check the data
+    with Pool(4) as p:
+        result = p.map(check_data, source_folder.glob(f"*/{prefix}*.csv"))
+    if (errors := filter(lambda x: isinstance(x, str), result)):
+        print("Errors:\n" + "\n".join(errors))
+        sys.exit(1)
+    with Pool(4) as p:
+        p.map(write_variables_data, source_folder.glob(f"*/{prefix}*.csv"))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Prepare data for Schoolpol web interface")
